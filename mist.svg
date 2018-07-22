@@ -1,0 +1,730 @@
+<svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="840" height="1188" viewBox="0 0 420 594">
+<style type="text/css">
+/*文字*/
+	/*島嶼編號*/
+	.loc-num{font-size:10px;font-family:"Microsoft YaHei","微軟雅黑體",sans-serif;text-anchor:middle;dominant-baseline:middle}
+	/*傳送到島嶼編號*/
+	.portalText{fill:#333399;font-size:9px;font-family:"Microsoft YaHei","微軟雅黑體",sans-serif;text-anchor:middle;dominant-baseline:middle}
+	/*失蹤者姓名*/
+	.lostText{fill:#900;font-size:9px;font-family:"標楷體",cursive;text-anchor:middle;dominant-baseline:middle}
+	/*npc標籤文字*/
+	.npcText{fill:#049;font-size:9px;font-weight:bold;font-family:"標楷體",cursive;text-anchor:middle;dominant-baseline:middle}
+/*物件*/
+	.portal{fill:#FF3366}
+	.point{fill:none;}
+	.npc{fill:#0099FF;stroke:#003366;stroke-width:0.5px} /*npc*/
+	.tree{fill:#00CC33;stroke:black;stroke-width:0.5px} /*庭園樹*/
+	.guard{fill:#FF0000;stroke:black;stroke-width:0.5px} /*守護者*/
+	.lost{fill:none;stroke:red;stroke-width:1px} /*失蹤者*/
+/*線條*/
+	.lineOneWay{fill:none;stroke:#0033CC;stroke-width:1px;stroke-linecap:butt} /*單向傳送*/
+	.lineTwoWay{fill:none;stroke:#009900;stroke-width:1px;stroke-linecap:butt} /*雙向傳送*/
+	.sepLine{fill:none;stroke:#666;stroke-width:0.5px;stroke-linecap:butt} /*區域分隔線*/
+/*區塊*/
+	.bg{fill:#999;stroke:none} /*背景*/
+</style>
+<defs>
+	<image id="img1" width="34" height="52" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAA0AQMAAADVBngHAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAIpJREFUGJVNz7ENwkAMBVBDJK5MSxHJi0S5VRiBARCX0VIgMUayQShTIJv7PxLxFa+wrfu2iIgKXt4dg6He0hRsdsfgxC69sHsOxpRCP+BEG5q+jKK6Va6KenHovtRp2tJMS9Adk1bef595hb1vUA+HXFMe6tTutTLbDf8YA7GmesJZQ3pxNzuUTn7IfEejevEEDgAAAABJRU5ErkJggg=="/>
+	<image id="img2" width="14" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAARAQMAAADXBg/cAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADNJREFUCJljYD/AYP+Bof4Hw38I+sPwo4bhxx+Gn38YKv8w1H8Ayco/YOAHogMMQMXMDQCBFhbOYzDYYgAAAABJRU5ErkJggg=="/>
+	<image id="img3" width="13" height="14" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAOAQMAAADOsQSRAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACFJREFUCJlj4D/AYP+Bof4HCP2HoA8w9ACE6oEKGhjkGQDB7BSDp+7zsgAAAABJRU5ErkJggg=="/>
+	<image id="img4" width="20" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARAQMAAADnih79AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADRJREFUCJljYLBnYGAwZGDg+MDA8B+E/wkw/Acy/v9/AMQH4LgeCScDsfIPBgZmoHrmBwwAAOwfODPkE3gAAAAASUVORK5CYII="/>
+	<image id="img5" width="31" height="31" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfAQMAAAAlYIR6AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAHtJREFUCJk1zLENwlAMhOE/egVK9aCkygoMEJFVyAbQ0UA8QsqM8wZAjIBYgS4UiTkXWPInS9YdcEZz124Hg923wH4+Qb1eIfsDNv7U21cxBN0cjKKxoDCZcOuMxY5wsRZ6DrAEN1SXi4rzWzQfpZIrmV7BFERRKv+rEj/0vSSymZxD9AAAAABJRU5ErkJggg=="/>
+	<image id="img6" width="22" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAARAQMAAADjf87AAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADlJREFUCJljYOA/wMAg48DAUMPAUPyHgaH+fwfD//9/oPgHEH8Aij0AY3sotgBijv8NDAxA9Yx/GAD+4h+E0IoBMAAAAABJRU5ErkJggg=="/>
+	<image id="img7" width="36" height="43" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAArAQMAAAAqmLgOAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAJpJREFUGJU9zDEKwkAUBNBZAjYGt1WQrIUHSCUKQlJ6jBwhZQox23msbGnnFXIAiy1TBNc/P2AxrxiGAYBRAuOBtVoF8wTKcZeA5pLE2g0pIlgV1fcg2gfonebqdvFKyz2NG+CdgthZiP1Eq5E61WiDQs08RVDbgp7V/ERXR5qp5kPxkjh/A087sY8tnRo6L9Y0BdVzOeOvk/oH2bw39iZWdrcAAAAASUVORK5CYII="/>
+	<image id="img8" width="32" height="31" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAfAQMAAAC8mF3PAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAHFJREFUCJk9zbENg0AMRuF3ooAOSooorMAGrMIIDIDIlYzlMmNclzZ0RIo4/BfQfLIs6xl4RRyD8EtQ7ZNzLFDnDxSCnJ1BdId4C6MSKx387elXYk4P6GMrGlhi76QRyq/X683U9I9BtaBQ8BWFXdPNCcVLJuR65HuwAAAAAElFTkSuQmCC"/>
+	<image id="img9" width="16" height="9" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJAQMAAAAB5D5xAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACBJREFUCJljqP/D8P8fw/95DH/kwaieob6OQf4HA/8HALDEC9ou377SAAAAAElFTkSuQmCC"/>
+	<image id="img10" width="33" height="52" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAA0AQMAAAA+McMEAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAINJREFUGJV9z7ENwkAMhWGjFNcRBkC6NVJEd4zCIBHOdimzAhW0KSmQzb1HEYsCF19hWb9kEZGjYDKtczDse5po93X+q/yag0q33e7FfDDDE62OG/V702GilWrQqenSvNVlg084auuUAbVSdsfe39AmkWm1Kzp2gXy9Jr6SHtTggcpZPurJQqLX6HRqAAAAAElFTkSuQmCC"/>
+	<image id="img11" width="36" height="36" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAIxJREFUCJlFzrENwkAQBMAFS1zoEmiBCviSCCG774RScAd0gJ05tCUSJLCXvX8kPphgtXf3gGXoWX+Q7eMiT+sH2JDVRQnJjK3ssPOw5bjkkECjfMaevM5IcoDfo19Voo4Vz2WPGLu/rP0ZVkxlm3N15Tw6lCRN2S3uGn8+c9x962/ev0INqToNspmAL/Qick7Lj9IrAAAAAElFTkSuQmCC"/>
+	<image id="img12" width="36" height="36" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkAQMAAADbzgrbAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAIpJREFUCJlNz7ENwjAUBNCzQEqZETICBSWFV2KDZBNvQlLSsQAS7tK6s4Aol/sfhHDxdDp/Wd9AyNDZFfNUBxnrZPIKBK53oCFX+TCPniNnjfacOUn+jGRSTiaTNVX9AP7Zux15KzbzkWe/LW7+2ixPNZ3MNq/X5AtolYH9aAbfB3wv8jDaN9pLwQabK3maypwn5gAAAABJRU5ErkJggg=="/>
+	<image id="img13" width="13" height="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQAQMAAAD3bWd6AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADBJREFUCJljsD/AUP+A4f8Hhv8/QOjDD4aPPxg+fwAhoLg9EB1gkAeiBgb+BgZ2BgBcRBVkf8waxAAAAABJRU5ErkJggg=="/>
+	<image id="img14" width="8" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABJJREFUCJljsGGoY/gPhXUMNgArkAVxTJwJ+gAAAABJRU5ErkJggg=="/>
+	<image id="img15" width="33" height="52" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAA0AQMAAAA+McMEAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAI1JREFUGJVtz7ENwkAMBVDDFVdmA24FBjjlVmEMChRnNLp0rAAbQJkC+WP/CCVCuHiF9e/LJyJykJietpHKaqEdzTRtHf+7l1+XNqWgr2BH08x62tES+yNVPDyHMAFXT9BGdSOYMZ3cQSd/O9Sne6mNlvlr3+DWgndoZ/dup+i0OBVxbEHmV/KN2qpU+QBYpER2BpReBgAAAABJRU5ErkJggg=="/>
+	<image id="img16" width="8" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABJJREFUCJljsGGoY/gPhXUMNgArkAVxTJwJ+gAAAABJRU5ErkJggg=="/>
+	<image id="img17" width="21" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAARAQMAAAAISHXDAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAC5JREFUCJljYLBvYGCwAGEGhuM/BBj+/wfhH2j4AUM9FNv/P8DADMYMDMw/wBgAIhYft2D12AEAAAAASUVORK5CYII="/>
+	<image id="img18" width="8" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABJJREFUCJljsGGoY/gPhXUMNgArkAVxTJwJ+gAAAABJRU5ErkJggg=="/>
+	<image id="img19" width="13" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAARAQMAAAA8MbTfAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADJJREFUCJljYD/AIP+Bof4HFP3/wfCjguHHD4bKDwyWHxjsPzDIPwAh/gMgxN7AwMwAADJuE3piwpfVAAAAAElFTkSuQmCC"/>
+	<image id="img20" width="16" height="10" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAKAQMAAACHcEzfAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACdJREFUCJljsD/AUP+H4f8/hv/yDD/kGf7YM9TVMdj/YZD/wcD/AQDA1ww1XQ818AAAAABJRU5ErkJggg=="/>
+	<image id="img21" width="18" height="19" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAATAQMAAACnXM+xAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAEBJREFUCJljYPjAwMD4g4GB2QKIZSCYfR4DA789A4M8ENv/b2D4//8ACq5/fIDB/vMBBnmgHD8Qs/9nYGD4xwAAEnQZriK5H/gAAAAASUVORK5CYII="/>
+	<image id="img22" width="14" height="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQAQMAAAAcWtx5AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAChJREFUCJlj4GFg4P/BYP+HoR6M/qOhHwz/PzDUP2CoP8Bg38DAzwAAHDEWfl0CDaUAAAAASUVORK5CYII="/>
+	<image id="img23" width="20" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAIAQMAAADDU02uAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACFJREFUCJlj4DM4wOBn84Dh//8PcFzf/4BBvr+Bgb2PAQD6lA7kI7AlggAAAABJRU5ErkJggg=="/>
+	<image id="img24" width="35" height="43" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAArAQMAAADIRKN3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAJhJREFUGJVNzjEKwkAQBdC/pA3ZWgjGwiNYWATGY1jmCHsAMVt5Lae08woLthZbpnKdvyl04L/iw4cB4BLsnAIdXARE3Q0Ir00BJimmDveSoF4o5LMz/RX08rP9cxxp7oFnUXPxaIF5oRLpoBS1wbbaROoSRejpsdofaLenTdW9KR4WwdmcY6BpovlEl1WlZTVWuZRM7Ql8AYn6OMYW6zStAAAAAElFTkSuQmCC"/>
+	<image id="img25" width="17" height="19" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAATAQMAAABMa3SyAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAEFJREFUCJljYHjAwMD4gYGB+QcDA5MFENswMLADMZsdAwOfPQODXH0Dg/3/Bob/yPhxA0P9Z4i4/H+geiBm/sMAAN7lF6MSDQmNAAAAAElFTkSuQmCC"/>
+	<image id="img26" width="15" height="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAQAQMAAADzmLdHAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAClJREFUCJljYPzBIP+Hwf4fQ/0/hv+oCChS/4eh/geD/QcQkn/AwH8AAEN4F1t0euK1AAAAAElFTkSuQmCC"/>
+	<image id="img27" width="19" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAIAQMAAAAhj1bXAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCJljYEhvYPBJPMBwpvIBw///UCz/gKFe/gADvwwDAObLDb3wS4yXAAAAAElFTkSuQmCC"/>
+	<image id="img28" width="33" height="52" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAA0AQMAAAA+McMEAAAABlBMVEUAAAD//wCI23BQAAAAAXRSTlMAQObYZgAAAIZJREFUGJVlzz0OwjAMBWBXkciYlQlfgQNElIOhpkdjYOcI7Q3oyBDF5L1KJIIMnyJb/hMROQneuDt3/85APXX/zk1PD/LrpeuW6AYG6t7NQBXx87iixqBBR4PZHeFmombPmi2pM742mKh+naLWKTe1atQMl3xFt4LZZpSnRP/gWYU7Z3qUDy5QRjGLrcexAAAAAElFTkSuQmCC"/>
+	<image id="img29" width="36" height="42" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAqAQMAAADhxGurAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAJlJREFUCJlFzzEOwjAMBdBfVWq2dkei4QgdM9GrdOMSFfQMHAiycQyCxAEyVIghkvF3Bzy86Vv2B4AJnAh0kfpcPYAQLrJg2ItEHJxIxlQ/aeWFYXc3b3+bo9nTvgVepTjgJEmdPdSxUJ+oy2j06tn0C60TRTZDS3uz29H6SquPfbu5cjfO6hgDzQP9mmVzMhPVKprXWuob+AH+CDhutqZiLwAAAABJRU5ErkJggg=="/>
+	<image id="img30" width="12" height="15" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAPAQMAAADqL7wKAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACtJREFUCJljkD/AUP+A4f8HKPrwgeHjB4bPDxiKH4DE7Q8w2DcwyIMRPwMA//ATXS8DPlUAAAAASUVORK5CYII="/>
+	<image id="img31" width="8" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABJJREFUCJljsGGoY/gPhXUMNgArkAVxTJwJ+gAAAABJRU5ErkJggg=="/>
+	<image id="img32" width="19" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAARAQMAAAAFVgWEAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADZJREFUCJljYKhnYGAoZGBg/MDAMP+DAsP/f0D8/wEUH4DiBjCuB2J7IGYH4R8MDOxAPcwPGAD5hB39BA/lUQAAAABJRU5ErkJggg=="/>
+	<image id="img33" width="12" height="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQAQMAAAAYrwxEAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACdJREFUCJljsD/AUP+A4f8HKHr4geHxB4bnD0DoP1AKCbEzMLAxAABjmBYmk5tQGAAAAABJRU5ErkJggg=="/>
+	<image id="img34" width="15" height="9" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAJAQMAAADXQeQUAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACJJREFUCJljkGFgsP/DUP+H4b8dw085hh9yDPV1DPY1QEEAdroJMOw5UUEAAAAASUVORK5CYII="/>
+	<image id="img35" width="18" height="18" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAQMAAABsABwUAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAD5JREFUCJlNx7ENABAQQNEvCqUFJBaRGI1JWMUullCIczrFKx4sMBtsUkE1cB18rkRVZCCf9zwHUXmpWAEOF/TcGS+RxLOeAAAAAElFTkSuQmCC"/>
+	<image id="img36" width="19" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAIAQMAAAAhj1bXAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCJlj4ElsYOCpPMAwp/IBw///UCz/gKFe/gADvxwDAN7vDW2dnCobAAAAAElFTkSuQmCC"/>
+	<image id="img37" width="31" height="30" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAeAQMAAADuPFffAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAHVJREFUCJlVzbENg0AUg+EfUUB3SUfHCpQUiLQZI2OkQOKNwEg3QJQZbgRQmkRCgF86mk9ubAOjwWVMcP2J6vuEchsg7G/IHW6bqP+sziSCURIid097CogehtRBY6KzFnproEgPMUfNLTrLP6pnvpa9nHgCcQB/NCQYQjKGNwAAAABJRU5ErkJggg=="/>
+	<image id="img38" width="34" height="38" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAmAQMAAACbGNuXAAAABlBMVEUAAAD//wCI23BQAAAAAXRSTlMAQObYZgAAAI9JREFUCJldjzEOwjAUQ40YOnICYOwhGHIldpA+N+lRmqOwsbUIBqiIauwwVCLDU+TY/zsA7tBZvc3txwxmYJ3MpqceNuQZ2JNF954EWiZe8KRNJF/mHFlRM0nKGMLOuVLCHyV3Nfuj56SFHTl6zmR/mbSLhaJSoiw3YEc+1JBu2DCO6hx0/9NoHob6ryvwBeIrdi8eTKKIAAAAAElFTkSuQmCC"/>
+	<image id="img39" width="35" height="37" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAlAQMAAADyTsIHAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAIBJREFUCJlVzbENgzAQBdAvUbikTJGCMSi9UjbAm7CKN2ADjhHSJVIsfv5diBAunr7O32egM+jcw4ku+QAS2YA+HGx/S/JTfMKiPL8qMmdWPWIu4eZywy06ujzlxaWG/746+6/pk2ahcuak/b3RVRPH7ykyDq1FfsoxTGuV3Qp8Ae9CeeVbKEKmAAAAAElFTkSuQmCC"/>
+	<image id="img40" width="14" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAARAQMAAADXBg/cAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADFJREFUCJljYH/AYP+Bof4Hw38g+gNCH/4wfPzB8PkHQ/EHkJQ8ED0AIf4DDOxA1AAAjBUW98queJwAAAAASUVORK5CYII="/>
+	<image id="img41" width="20" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAIAQMAAADDU02uAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACVJREFUCJlj4DM4wOBn8IDBz+YBw///H8C4vv8Bg33/AQb+/gYA2h0OPSj3+roAAAAASUVORK5CYII="/>
+	<image id="img42" width="14" height="15" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAPAQMAAADu2mw3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCJljYPzBUP+D4f8fJPQDgYBS9R8Y6h8w2DcwyDEAAD+wF1sLmAbuAAAAAElFTkSuQmCC"/>
+	<image id="img43" width="8" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABJJREFUCJljsGGoY/gPhXUMNgArkAVxTJwJ+gAAAABJRU5ErkJggg=="/>
+	<image id="img44" width="35" height="40" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAoAQMAAABO0NHZAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAJhJREFUCJlFzyEOwkAQBdDfNEE12eBKQtIrINe1kmOsgyNUELoOi+Q2LI5bsEdYHDUd/gyCEU9M/iTzAVQRcGaf1hcghI0AQy+SMLi7ZCT0EqhboJ7+Nj+92aojfcwf+nKRli3ooahTUrusYjQ7s9YkkL26M9uj2uzV1VOtb8RXV3pGoZIyv5ec1BLVtzmbLEEXPWUHzsT1F+kaOgcE0UeKAAAAAElFTkSuQmCC"/>
+	<image id="img45" width="8" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABJJREFUCJljsGGoY/gPhXUMNgArkAVxTJwJ+gAAAABJRU5ErkJggg=="/>
+	<image id="img46" width="17" height="18" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAASAQMAAACHN6cXAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADZJREFUCJljYPzAwMAMxEwWEMwGxOx2DAx89QwMckBs/7+B4T86Pt7AUP+8ASzH/o+BgfEPAwCiYReoW7UsNwAAAABJRU5ErkJggg=="/>
+	<image id="img47" width="35" height="42" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAqAQMAAAADGHDSAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAJpJREFUCJlFziEOAjEQheHXbAKorSNLQmiPgEKRLEdZiaxcQaCH4R7UIblCBRKxcsWGoW9IwHxm5p8MACTgq43UJdyBbVgJ4FsRj87dJONgVLi3L9ozE3uiC7XZq+ufeaiBh6QZMDoUQ0/L/aLN1EwUOkUVKXJNg9psaL2k8x2trtQ89eeXtsdim/riZQh07P5OqiQ1clOgFfABpbA0vm/OBGgAAAAASUVORK5CYII="/>
+	<image id="img48" width="15" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAIAQMAAAAcHTexAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACFJREFUCJljsP/AUP+H4f88hj9yDH/sGOrrGOzrGOQ/AAB6KQllZh+74QAAAABJRU5ErkJggg=="/>
+	<image id="img49" width="33" height="53" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAA1AQMAAAD1bRChAAAABlBMVEUAAAD//wCI23BQAAAAAXRSTlMAQObYZgAAAJJJREFUGJVtz7ENwjAQBdALSHHpBZC8SJRbhQ1ggChOwWB06bICGSF0KSxf7r4FsgQuXnH6vm8TEXmyw7XTzwQGWPIOnqf/Otgic6rsq21iNG+44RL0O6qKNtnCamlRG5GnVkAPGcaPqwXNHGd15Fk39N0NcnH/yqJ2oZjuRMMrXW1PssIc1ZjdA29bYMYXIV3oAKYGRqJhcd53AAAAAElFTkSuQmCC"/>
+	<image id="img50" width="19" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAIAQMAAAAhj1bXAAAABlBMVEUAAAD//wCI23BQAAAAAXRSTlMAQObYZgAAACNJREFUCJljYEhvYJBJPMAwp/IBw///UCx/gKFevoGBX44BANsPDP8LMKsYAAAAAElFTkSuQmCC"/>
+	<image id="img51" width="31" height="30" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAeAQMAAADuPFffAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAHxJREFUCJk1zMEJwlAQhOH/ESERhHRgWkhuHoK2Ygk55iC8LcASLGYLkNTwSlC8JCB52T3k8sHAzABRoIoKxyXBaR7gsI5Q5jeEPAF5NaJzezm2oEmOOsJfGmvpFR7aQysX6KSF3jmnO9Qf65ZfmxY/GxX+Fp6OvwXdweIGnN0jqUaO9VkAAAAASUVORK5CYII="/>
+	<image id="img52" width="34" height="42" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAqAQMAAADs2hvsAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAJlJREFUCJlFzyEOwkAQBdC/IIpoWotoWINEIEsg2R5lj4BEkFDFtRjJLahErlzRsMwfBGKemp8/AwCiAzcCrRnE3YEYjwUYDkUV/ygCqUz4DyPNz5muMl1faH+l+46mGngVaYDUQS2JBqF+oi5Dd7Axq5E6oYgd7U+03tKFudzZtW/zqYRRe3GTM50iTWYe/hYx9Tv4mdF2Ar7uUzjltbJWqwAAAABJRU5ErkJggg=="/>
+	<image id="img53" width="13" height="14" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAOAQMAAADOsQSRAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAB1JREFUCJlj4P/BUA9G/1ERSPADGB1gqG9gsGcAANUMFJtfURuRAAAAAElFTkSuQmCC"/>
+	<image id="img54" width="15" height="9" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAJAQMAAADXQeQUAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACJJREFUCJljkP/DUP+H4f8/hv9yDH+AqI6hvoah/gND/QMApQYMDhKiJWAAAAAASUVORK5CYII="/>
+	<image id="img55" width="21" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAARAQMAAAAISHXDAAAABlBMVEUAAAD//wCI23BQAAAAAXRSTlMAQObYZgAAADVJREFUCJljYJA/wMBU48Cg/oeBof4PB8P//yD8A4o/gHE9ENuD8QMGeSBmBGGgehBm/sEAADWpH58/uNDYAAAAAElFTkSuQmCC"/>
+	<image id="img56" width="34" height="36" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAkAQMAAADW0HqcAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAIRJREFUCJlFjr0NwlAMhA9RUDIBYoyUXgzhtwlr0CUbhAUiZQOoIBLhHWe/Ii4+WZ/8cwBmqHav4OkddA7JB3AwLsCx/63Ama3nV55kQUd7Dho0BsM4qzcCJgN8LMhGbpQYYzLI3OVto/xU9HFVb/USpnrz2r2SNS8o1Z6+ZJ57smTygj91WW6mgrCniQAAAABJRU5ErkJggg=="/>
+	<image id="img57" width="31" height="31" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfAQMAAAAlYIR6AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAHlJREFUCJlVzLENwkAMheE/uiIUSNkgYQRKKm4VRoAuRZR4AIbyBMwQNkCiAQnd8UyHi0+2rPeAGc1isKku3g/YvkZoiz6p3vT9sRSRg+ETWJyGk53ionqGaT3C2Q5wsb1O20HvJ+hWtXd3kZ6KNlXx5hpEUfLY/vgC/L8npbiD8FoAAAAASUVORK5CYII="/>
+	<image id="img58" width="17" height="19" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAATAQMAAABMa3SyAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAEJJREFUCJljYHjAwMD4A4gtGBiYJRgY2GWAeA8Q2zEw8NszMMj/Z2Co/9/A8B8J1z8G4s8NDPZANkie/R8DA4MNAwC6MxYufXz38AAAAABJRU5ErkJggg=="/>
+	<image id="img59" width="14" height="15" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAPAQMAAADu2mw3AAAABlBMVEUAAAD//wCI23BQAAAAAXRSTlMAQObYZgAAACVJREFUCJljYPjAIP+Dof4Hw/8/GAgo/oGh/gFD/QEG+wYGeQYAGloWQ3LfeyMAAAAASUVORK5CYII="/>
+	<image id="img60" width="33" height="51" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAzAQMAAAAjNPO8AAAABlBMVEUAAAD//wCI23BQAAAAAXRSTlMAQObYZgAAAIdJREFUGJVtz7ERwjAMhWEdFC69AV6BAXIRozACLOCwASORDRgBNoCSykL6SeEDXHyFT3qSREQ2Em9E/bFgxoTr3tN/V/Jt6TKPeMAnTS/isfCT7862hGqh2ex1mFFx6jSLyjZd3aofH55Whwtmd1w8+6yhGLa9e2u7yGyxgSkmTkkzNrat8gahs0A3+52R1QAAAABJRU5ErkJggg=="/>
+	<image id="img61" width="31" height="30" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAeAQMAAADuPFffAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAHNJREFUCJk1zLENwkAUg+H/lEhQIGWBiFshJRW3CiNQUlDcCIz0SsY4GmYAESXYQjSfXNgGSoVtCfFusHudoV8usFmfkAzrIorJs7mJoZr4pTmyWrGHa4ww1YOZ4GhyO6nV1B0eWnUfjZLf0t34o4t/Qo0vOoUjKAL6AMgAAAAASUVORK5CYII="/>
+	<image id="img62" width="16" height="9" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJAQMAAAAB5D5xAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACBJREFUCJljsG9gqP/D8B+I5Bn+AFE9Q109g/0/Bv4fAJpoCytoOcVtAAAAAElFTkSuQmCC"/>
+	<image id="img63" width="20" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARAQMAAADnih79AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADFJREFUCJljYLBvYGCwAGEGhvofQPxfgOH//w8YuP7/ATC2//+AgRlIMwPVgjDjAwYA7pMejtLjiN8AAAAASUVORK5CYII="/>
+	<image id="img64" width="20" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARAQMAAADnih79AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADRJREFUCJljYLBvYGCwAOIKBobzPwQY/v8H4Q9I+AEQHwDiBoZ6ILYHsplB+A8DA/MPMAYAI+AfbEQWLMAAAAAASUVORK5CYII="/>
+	<image id="img65" width="39" height="53" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAA1AQMAAAD4c2DmAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAJBJREFUGJV10LENwkAMBVCfrkiD8AIRMAkwGURKERp0IzAK6a5kBUagTKQonx+HcEdB8+TC/rItIuJaIt4sTH1ldklvOlPGzJO5z+q5x9LkmPzkP5ObXRqyMPe1FE/XKz+wTUEV6H7FP2/9sHh+XJlzCIFumxqLGu+0qDEbKHDhmUA1GbmgQ5zeoG1vmyPTV29yGVotDJ4hHwAAAABJRU5ErkJggg=="/>
+	<image id="img66" width="14" height="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQAQMAAAAcWtx5AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAChJREFUCJljYHjAwP+Dof4Pw3809AOMPjD8f8BQf4DBvoFBnoFBjgEAZ4cXQfzuDYYAAAAASUVORK5CYII="/>
+	<image id="img67" width="12" height="15" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAPAQMAAADqL7wKAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACVJREFUCJlj4D/AYP+Aof4DCP1HQw8Y/h9gqAcqaGCwZ2DgYwAA+AEUYb3REAQAAAAASUVORK5CYII="/>
+	<image id="img68" width="17" height="18" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAASAQMAAACHN6cXAAAABlBMVEUAAAD//wCI23BQAAAAAXRSTlMAQObYZgAAADhJREFUCJljYPzBwMD8h4GBrQ6I7YDYnoGBHYj56hkY5OobGOz/NzD8R8fHGxjqn0Pk+IGY4T8DANTOGSMZdtPfAAAAAElFTkSuQmCC"/>
+	<image id="img69" width="17" height="18" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAASAQMAAACHN6cXAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAD5JREFUCJldwzEOQDAAAMArCZv+gI+Ifsuk/Z2nWI0GUYPNJSectBfNSjd/+4VhY8ykWtTfvBfpKKZKfAi3F6OHFqOvlQp4AAAAAElFTkSuQmCC"/>
+	<image id="img70" width="20" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAIAQMAAADDU02uAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCJlj4DM+wOBn8IDhnM0Hhv//obj/AUN9/wEG9n4GAO3vDwikio4OAAAAAElFTkSuQmCC"/>
+	<image id="img71" width="15" height="9" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAJAQMAAADXQeQUAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACJJREFUCJljkGdgqP/D8P8fw385hj9AVMdQX8dg/49B/gEAirAKgnPIlHsAAAAASUVORK5CYII="/>
+	<image id="img72" width="12" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAARAQMAAADT89/hAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADRJREFUCJlj6Ghg+H+A4f8DhpoDDDUNDIUNIDLuAQP/Bwb+BwzMYMTYAELMBxgYDzAwNAAA8IgQxOda7VkAAAAASUVORK5CYII="/>
+	<image id="img73" width="33" height="52" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAA0AQMAAAA+McMEAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAI1JREFUGJV9zzEOwjAMBVBDJbKRlc1X4ABWw7EYqqZHY+sx4AZ0ZEA29s9A1aEZ3hDZ3zYR0ZniMSzTX179Z5hg15z2PNLWU8uHFS7BAXYwwQw5vPIrqi00e3gdzLDAutKg1tkd6+xdo7zdQcoSRqYIf4j63lzhpt7dp94iU2O2WeyhCaekL1TsPMAL/QDyS0Mor/bMrgAAAABJRU5ErkJggg=="/>
+	<image id="img74" width="13" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAARAQMAAAA8MbTfAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADFJREFUCJljYH/AYP+Bof4Dw/8fUPThB8PHHwyffzAUg8WByB6o5gCD/AEG/gMMzA0AlwUXt5YHJLsAAAAASUVORK5CYII="/>
+	<image id="img75" width="21" height="19" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAATAQMAAABFgNTIAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAADZJREFUCJljYGCwYGBg+AHBjB8YGJIfMDD/b2Co/8/A8P8PDgxU+h+otP4BEB8A4gYGBnsGBgDZqxsBVWIaIwAAAABJRU5ErkJggg=="/>
+	<image id="img76" width="35" height="42" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAqAQMAAAADGHDSAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAJhJREFUCJklzzEOwjAMBdCPKrVMycKCVDVXyMgWjtKRkbFDJXIoRoQicQCukIGRoWMGVJPveniLv2UbAEawEmAjdXn/Avz1KBGjF+pEMs4IqlsZtk/abT5o26sDNYbOLfCWUp0sqrdCQ6ZWxaxqF02iWAw9qf1AzYF2anOnu4/e/NXZC3j0RBdfDWWTf4VVlaRGZn6crOvxB5VSMzLgfh8qAAAAAElFTkSuQmCC"/>
+	<image id="img77" width="8" height="8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABJJREFUCJljsGGoY/gPhXUMNgArkAVxTJwJ+gAAAABJRU5ErkJggg=="/>
+	<image id="img78" width="37" height="37" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlAQMAAAD/ULJAAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAJJJREFUCJlVzrENwjAUhOGzXFChDEDBIEh4lYxAT2FGYBQGSJEuZUYgXUpbogCUKMc9R4qEi6/4/WQ/wCXo7NNNBkoX+QA8OQM7cgGqxEaSulZhiyP7aTBpWglkuBczDirqvXWu8s9xNds8P4hlxsyIKhf1JQ7yLCuGd2s7bL/7okZfWpfPrza/6hngVPSspeuAHxZDeON5W66DAAAAAElFTkSuQmCC"/>
+	<circle id="portal" r="2"/>
+	<circle id="point" r="2"/>
+	<path id="tree" d="M 0,-4 L 1.47,-2.02 3.8,-1.24 2.38,0.77 2.35,3.24 0,2.5 -2.35,3.24 -2.38,0.77 -3.8,-1.24 -1.47,-2.02z"/>
+	<path id="guard" d="M 0,-4 L 3.464,2 -3.464,2 z"/>
+	<path id="lost" d="M -2,-2 L 2,2 M -2,2 L 2,-2 z"/>
+	<marker id="arrow1" orient="auto" markerWidth="7" markerHeight="5.6" viewBox="-4 -2 5 4">
+		<path d="M -4,-2 L 1,0 -4,2 -3,0 z" fill="#0033CC"/>
+	</marker>
+	<g id="npc">
+		<path d="M 0,0 L -2,-6 2,-6 z"/>
+		<circle cy="-8" r="1.5"/>
+	</g>
+</defs>
+<rect width="840" height="1188" viewBox="0 0 420 594" class="bg"/>
+<path d="M 0,110 l 420,0" class="sepLine"/>
+<path d="M 0,200 l 420,0" class="sepLine"/>
+<path d="M 0,325 l 420,0" class="sepLine"/>
+<path d="M 0,450 l 420,0" class="sepLine"/>
+<path d="M 130,0 l 0,110" class="sepLine"/>
+<path d="M 275,0 l 0,110" class="sepLine"/>
+<path d="M 100,110 l 0,90" class="sepLine"/>
+<path d="M 85,200 l 0,125" class="sepLine"/>
+<path d="M 300,200 l 0,125" class="sepLine"/>
+<path d="M 250,325 l 0,125" class="sepLine"/>
+<path d="M 190,450 l 0,144" class="sepLine"/>
+<g transform="translate(-3,4)" id="area1">
+	<g transform="translate(18,15)" id="loc1">
+		<use href="#img1"/>
+		<use href="#portal" x="29" y="50.73" class="portal"/>
+		<use href="#portal" x="30" y="1.73" class="portal"/>
+		<text x="15" y="36" class="loc-num">1</text>
+		<use href="#npc" x="23" y="47" class="npc"/>
+		<text x="18" y="55" class="npcText">洛奇</text>
+		<text x="18" y="64" class="npcText">(任務開始)</text>
+	</g>
+	<g transform="translate(64,-1)" id="loc2">
+		<use href="#img2"/>
+		<use href="#lost" x="7" y="14" class="lost"/>
+		<use href="#portal" x="1" y="7" class="portal"/>
+		<text id="text6" x="6" y="22" class="lostText">德爾</text>
+		<text x="7" y="6" class="loc-num">2</text>
+	</g>
+	<g transform="translate(82,17)" id="loc3">
+		<use href="#img3"/>
+		<use href="#portal" x="13" y="5.73" class="portal"/>
+		<text x="4" y="10" class="loc-num">3</text>
+	</g>
+	<g transform="translate(88,38)" id="loc4">
+		<use href="#img4"/>
+		<use href="#portal" x="19" y="4.73" class="portal"/>
+		<text x="9" y="10" class="loc-num">4</text>
+	</g>
+	<g transform="translate(94,61)" id="loc5">
+		<use href="#img5"/>
+		<use href="#tree" x="14" y="0" class="tree"/>
+		<use href="#guard" x="7" y="24" class="guard"/>
+		<use href="#portal" x="1" y="16.73" class="portal"/>
+		<use href="#portal" x="13" y="4.73" class="portal"/>
+		<text x="20" y="13" class="loc-num">5</text>
+	</g>
+</g>
+<g transform="translate(-9,9)" id="area2">
+	<g transform="translate(176,67)" id="loc6">
+		<use href="#img6"/>
+		<use href="#lost" x="9" y="14" class="lost"/>
+		<use href="#portal" x="2" y="5.73" class="portal"/>
+		<use href="#portal" x="21" y="6.73" class="portal"/>
+		<text id="text7" x="10" y="23" class="lostText">查伊豪金</text>
+		<text x="11" y="9" class="loc-num">6</text>
+	</g>
+	<g transform="translate(146,16)" id="loc7">
+		<use href="#img7"/>
+		<use href="#portal" x="34" y="7.73" class="portal"/>
+		<text x="25" y="11" class="loc-num">7</text>
+	</g>
+	<g transform="translate(192,35)" id="loc8">
+		<use href="#img8"/>
+		<use href="#lost" x="19" y="3" class="lost"/>
+		<use href="#portal" x="3" y="16.73" class="portal"/>
+		<text id="text8" x="17" y="-3" class="lostText">達查勒</text>
+		<text x="20" y="10" class="loc-num">8</text>
+	</g>
+	<g transform="translate(227,72)" id="loc9">
+		<use href="#img9"/>
+		<use href="#portal" x="1" y="2.73" class="portal"/>
+		<text x="7" y="6" class="loc-num">9</text>
+	</g>
+	<g transform="translate(233,-4)" id="loc10">
+		<use href="#img10"/>
+		<use href="#tree" x="27" y="1" class="tree"/>
+		<use href="#guard" x="7" y="44" class="guard"/>
+		<use href="#portal" x="3" y="33.73" class="portal"/>
+		<use href="#portal" x="30" y="2.73" class="portal"/>
+		<text x="17" y="38" class="loc-num">10</text>
+	</g>
+</g>
+<g transform="translate(-8,5)" id="area3">
+	<g transform="translate(303,16)" id="loc11">
+		<use href="#img11"/>
+		<use href="#portal" x="18" y="18.73" class="portal"/>
+		<use href="#portal" x="34" y="22.73" class="portal"/>
+		<text x="10" y="20" class="loc-num">11</text>
+	</g>
+	<g transform="translate(304,63)" id="loc12">
+		<use href="#img12"/>
+		<use href="#portal" x="17" y="20.73" class="portal"/>
+		<use href="#portal" x="32" y="19.73" class="portal"/>
+		<text x="8" y="21" class="loc-num">12</text>
+	</g>
+	<g transform="translate(358,85)" id="loc13">
+		<use href="#img13"/>
+		<use href="#portal" x="7" y="14.73" class="portal"/>
+		<use href="#portal" x="0" y="3.73" class="portal"/>
+		<text x="8" y="6" class="loc-num">13</text>
+	</g>
+	<g transform="translate(360,63)" id="loc14">
+		<use href="#img14"/>
+		<use href="#portal" x="3" y="7.73" class="portal"/>
+		<text x="3" y="2" class="loc-num">14</text>
+	</g>
+	<g transform="translate(364,6)" id="loc15">
+		<use href="#img15"/>
+		<use href="#tree" x="26" y="-2" class="tree"/>
+		<use href="#guard" x="4" y="33" class="guard"/>
+		<use href="#portal" x="30" y="50.73" class="portal"/>
+		<use href="#portal" x="28" y="1.73" class="portal"/>
+		<text x="14" y="38" class="loc-num">15</text>
+	</g>
+	<g transform="translate(392,77)" id="loc16">
+		<use href="#img16"/>
+		<use href="#portal" x="4" y="7.72" class="portal"/>
+		<text x="9" y="0" class="loc-num">16</text>
+	</g>
+</g>
+<g transform="translate(-398,110)" id="area4">
+	<g transform="translate(465,26)" id="loc17">
+		<use href="#img17"/>
+		<use href="#tree" x="23" y="11" class="tree"/>
+		<use href="#portal" x="9" y="2" class="portal"/>
+		<use href="#portal" x="20" y="9" class="portal"/>
+		<text x="10" y="16" class="loc-num">17</text>
+	</g>
+	<g transform="translate(436,8)" id="loc18">
+		<use href="#img18"/>
+		<use href="#portal" x="3" y="8" class="portal"/>
+		<text x="4" y="2" class="loc-num">18</text>
+	</g>
+	<g transform="translate(408,21)" id="loc19">
+		<use href="#img19"/>
+		<use href="#portal" x="7" y="16" class="portal"/>
+		<text x="6" y="7" class="loc-num">19</text>
+	</g>
+	<g transform="translate(439,62)" id="loc20">
+		<use href="#img20"/>
+		<use href="#guard" x="14" y="3" class="guard"/>
+		<use href="#portal" x="1" y="4" class="portal"/>
+		<text x="7" y="11" class="loc-num">20</text>
+	</g>
+</g>
+<g transform="translate(88,10)" id="area5">
+	<g transform="translate(43,108)" id="loc21">
+		<use href="#img21"/>
+		<use href="#portal" x="0" y="12" class="portal"/>
+		<text x="10" y="14" class="loc-num">21</text>
+	</g>
+	<g transform="translate(24,138)" id="loc22">
+		<use href="#img22"/>
+		<use href="#portal" x="13" y="8" class="portal"/>
+		<text x="3" y="9" class="loc-num">22</text>
+	</g>
+	<g transform="translate(37,171)" id="loc23">
+		<use href="#img23"/>
+		<use href="#portal" x="1" y="4" class="portal"/>
+		<text x="8" y="6" class="loc-num">23</text>
+	</g>
+	<g transform="translate(73,126)" id="loc24">
+		<use href="#img24"/>
+		<use href="#portal" x="31" y="7" class="portal"/>
+		<text x="24" y="11" class="loc-num">24</text>
+	</g>
+	<g transform="translate(135,108)" id="loc25">
+		<use href="#img25"/>
+		<use href="#portal" x="1" y="13" class="portal"/>
+		<text x="9" y="12" class="loc-num">25</text>
+	</g>
+	<g transform="translate(118,138)" id="loc26">
+		<use href="#img26"/>
+		<use href="#portal" x="14" y="7" class="portal"/>
+		<text x="6" y="10" class="loc-num">26</text>
+	</g>
+	<g transform="translate(137,171)" id="loc27">
+		<use href="#img27"/>
+		<use href="#portal" x="1" y="4" class="portal"/>
+		<use href="#portal" x="18" y="4" class="portal"/>
+		<text id="text5" x="-23" y="6" class="portalText">11</text>
+		<text x="10" y="7" class="loc-num">27</text>
+	</g>
+	<g transform="translate(174,116)" id="loc28">
+		<use href="#img28"/>
+		<use href="#portal" x="29" y="2" class="portal"/>
+		<text x="15" y="38" class="loc-num">28</text>
+	</g>
+	<g transform="translate(228,127)" id="loc29">
+		<use href="#img29"/>
+		<use href="#portal" x="33" y="7" class="portal"/>
+		<text x="25" y="9" class="loc-num">29</text>
+	</g>
+	<g transform="translate(279,151)" id="loc30">
+		<use href="#img30"/>
+		<use href="#lost" x="6" y="2" class="lost"/>
+		<use href="#portal" x="6" y="14" class="portal"/>
+		<text id="text9" x="8" y="-6" class="lostText">納伊查</text>
+		<text x="11" y="9" class="loc-num">30</text>
+	</g>
+	<g transform="translate(311,157)" id="loc31">
+		<use href="#img31"/>
+		<use href="#portal" x="4" y="8" class="portal"/>
+		<text x="7" y="3" class="loc-num">31</text>
+	</g>
+	<g transform="translate(294,117)" id="loc32">
+		<use href="#img32"/>
+		<use href="#tree" x="19" y="4.5" class="tree"/>
+		<use href="#guard" x="13" y="13.5" class="guard"/>
+		<use href="#portal" x="1" y="9" class="portal"/>
+		<use href="#portal" x="17" y="8" class="portal"/>
+		<text x="9" y="9" class="loc-num">32</text>
+	</g>
+</g>
+<g transform="translate(-337,122)" id="area6">
+	<g transform="translate(360,92)" id="loc33">
+		<use href="#img33"/>
+		<use href="#portal" x="5" y="14" class="portal"/>
+		<text x="5" y="7" class="loc-num">33</text>
+	</g>
+	<g transform="translate(352,124)" id="loc34">
+		<use href="#img34"/>
+		<use href="#portal" x="0" y="4" class="portal"/>
+		<text x="12" y="6" class="loc-num">34</text>
+	</g>
+	<g transform="translate(351,142)" id="loc35">
+		<use href="#img35"/>
+		<use href="#portal" x="1" y="11" class="portal"/>
+		<text x="10" y="11" class="loc-num">35</text>
+	</g>
+	<g transform="translate(351,171)" id="loc36">
+		<use href="#img36"/>
+		<use href="#portal" x="18" y="4" class="portal"/>
+		<text x="7" y="5" class="loc-num">36</text>
+	</g>
+	<g transform="translate(384,124)" id="loc37">
+		<use href="#img37"/>
+		<use href="#tree" x="0" y="12" class="tree"/>
+		<use href="#guard" x="9" y="23.5" class="guard"/>
+		<use href="#portal" x="2" y="15" class="portal"/>
+		<use href="#portal" x="19" y="4" class="portal"/>
+		<text x="23" y="11" class="loc-num">37</text>
+	</g>
+</g>
+<g transform="translate(124,10)" id="area7">
+	<g transform="translate(-24,205)" id="loc38">
+		<use href="#img38"/>
+		<use href="#portal" x="16" y="20" class="portal"/>
+		<use href="#portal" x="30" y="31" class="portal"/>
+		<text x="16" y="14" class="loc-num">38</text>
+	</g>
+	<g transform="translate(19,205)" id="loc39">
+		<use href="#img39"/>
+		<use href="#portal" x="17" y="19" class="portal"/>
+		<use href="#portal" x="30" y="31" class="portal"/>
+		<text x="17" y="13" class="loc-num">39</text>
+	</g>
+	<g transform="translate(66,240)" id="loc40">
+		<use href="#img40"/>
+		<use href="#portal" x="0" y="6" class="portal"/>
+		<text x="9" y="8" class="loc-num">40</text>
+	</g>
+	<g transform="translate(93,215)" id="loc41">
+		<use href="#img41"/>
+		<use href="#portal" x="1" y="5" class="portal"/>
+		<text x="12" y="5" class="loc-num">41</text>
+	</g>
+	<g transform="translate(130,219)" id="loc42">
+		<use href="#img42"/>
+		<use href="#lost" x="8" y="2" class="lost"/>
+		<use href="#portal" x="4" y="14" class="portal"/>
+		<text id="text10" x="7" y="-5" class="lostText">梅斯</text>
+		<text x="7" y="9" class="loc-num">42</text>
+	</g>
+	<g transform="translate(159,233)" id="loc43">
+		<use href="#img43"/>
+		<use href="#portal" x="3" y="8" class="portal"/>
+		<text x="5" y="2" class="loc-num">43</text>
+	</g>
+	<g transform="translate(122,255)" id="loc44">
+		<use href="#img44"/>
+		<use href="#tree" x="35" y="9" class="tree"/>
+		<use href="#portal" x="34" y="6" class="portal"/>
+		<use href="#portal" x="7" y="34" class="portal"/>
+		<text x="24" y="8" class="loc-num">44</text>
+	</g>
+	<g transform="translate(95,290)" id="loc45">
+		<use href="#img45"/>
+		<use href="#portal" x="6" y="2" class="portal"/>
+		<text x="-1" y="8" class="loc-num">45</text>
+	</g>
+	<g transform="translate(95,246)" id="loc46">
+		<use href="#img46"/>
+		<use href="#guard" x="10" y="4" class="guard"/>
+		<use href="#portal" x="0" y="11" class="portal"/>
+		<text x="10" y="11" class="loc-num">46</text>
+	</g>
+</g>
+<g transform="translate(138,5)" id="area8">
+	<g transform="translate(168,268)" id="loc47">
+		<use href="#img47"/>
+		<use href="#guard" x="18" y="41" class="guard"/>
+		<use href="#portal" x="34" y="7" class="portal"/>
+		<use href="#portal" x="10" y="37" class="portal"/>
+		<text x="22" y="12" class="loc-num">47</text>
+	</g>
+	<g transform="translate(228,275)" id="loc48">
+		<use href="#img48"/>
+		<use href="#portal" x="1" y="4" class="portal"/>
+		<text x="8" y="6" class="loc-num">48</text>
+	</g>
+	<g transform="translate(223,208)" id="loc49">
+		<use href="#img49"/>
+		<use href="#tree" x="35" y="1" class="tree"/>
+		<use href="#lost" x="14" y="31.5" class="lost"/>
+		<use href="#portal" x="29" y="52" class="portal"/>
+		<use href="#portal" x="3" y="38" class="portal"/>
+		<use href="#portal" x="30" y="2" class="portal"/>
+		<text id="text4" x="-15" y="38" class="portalText">4</text>
+		<text id="text11" x="3" y="22" class="lostText">諾瓦納伊</text>
+		<text x="15" y="39" class="loc-num">49</text>
+	</g>
+	<g transform="translate(252,300)" id="loc50">
+		<use href="#img50"/>
+		<use href="#portal" x="1" y="4" class="portal"/>
+		<text x="10" y="6" class="loc-num">50</text>
+	</g>
+</g>
+<g transform="translate(235,15)" id="area9">
+	<g transform="translate(36,341)" id="loc51">
+		<use href="#img51"/>
+		<use href="#portal" x="2" y="16" class="portal"/>
+		<use href="#portal" x="18" y="4" class="portal"/>
+		<text id="text3" x="-6" y="1" class="portalText">40</text>
+		<text x="14" y="16" class="loc-num">51</text>
+	</g>
+	<g transform="translate(86,335)" id="loc52">
+		<use href="#img52"/>
+		<use href="#tree" x="24" y="2" class="tree"/>
+		<use href="#tree" x="9" y="41" class="tree"/>
+		<use href="#guard" x="27" y="12" class="guard"/>
+		<use href="#portal" x="25" y="6" class="portal"/>
+		<use href="#portal" x="32" y="7" class="portal"/>
+		<use href="#portal" x="11" y="37" class="portal"/>
+		<text id="text2" x="-10" y="38" class="portalText">29</text>
+		<text x="17" y="18" class="loc-num">52</text>
+	</g>
+	<g transform="translate(140,327)" id="loc53">
+		<use href="#img53"/>
+		<use href="#portal" x="5" y="13" class="portal"/>
+		<text x="6" y="6" class="loc-num">53</text>
+	</g>
+	<g transform="translate(142,365)" id="loc54">
+		<use href="#img54"/>
+		<use href="#portal" x="1" y="5" class="portal"/>
+		<text x="10" y="7" class="loc-num">54</text>
+	</g>
+	<g transform="translate(137,388)" id="loc55">
+		<use href="#img55"/>
+		<use href="#guard" x="11" y="15.5" class="guard"/>
+		<use href="#portal" x="1" y="7" class="portal"/>
+		<text x="11" y="9" class="loc-num">55</text>
+	</g>
+</g>
+<g transform="translate(-271,137)" id="area10">
+	<g transform="translate(287,202)" id="loc56">
+		<use href="#img56"/>
+		<use href="#portal" x="2" y="16" class="portal"/>
+		<use href="#portal" x="32" y="25" class="portal"/>
+		<text x="17" y="10" class="loc-num">56</text>
+		<use href="#npc" x="17.5" y="22" class="npc"/>
+		<text x="18" y="28" class="npcText">洛奇</text>
+		<text x="18" y="37" class="npcText">(任務結束)</text>
+	</g>
+	<g transform="translate(303,257)" id="loc57">
+		<use href="#img57"/>
+		<use href="#portal" x="2" y="16" class="portal"/>
+		<use href="#portal" x="30" y="7" class="portal"/>
+		<text x="15" y="16" class="loc-num">57</text>
+	</g>
+	<g transform="translate(372,287)" id="loc58">
+		<use href="#img58"/>
+		<use href="#portal" x="1" y="11" class="portal"/>
+		<text x="9" y="13" class="loc-num">58</text>
+	</g>
+	<g transform="translate(350,255)" id="loc59">
+		<use href="#img59"/>
+		<use href="#portal" x="13" y="6" class="portal"/>
+		<text x="7" y="8" class="loc-num">59</text>
+	</g>
+	<g transform="translate(370,202)" id="loc60">
+		<use href="#img60"/>
+		<use href="#portal" x="24" y="49" class="portal"/>
+		<use href="#portal" x="29" y="2" class="portal"/>
+		<text x="16" y="37" class="loc-num">60</text>
+	</g>
+	<g transform="translate(426,221)" id="loc61">
+		<use href="#img61"/>
+		<use href="#tree" x="-1" y="18" class="tree"/>
+		<use href="#portal" x="3" y="16" class="portal"/>
+		<use href="#portal" x="18" y="5" class="portal"/>
+		<text x="14" y="15" class="loc-num">61</text>
+	</g>
+	<g transform="translate(471,197)" id="loc62">
+		<use href="#img62"/>
+		<use href="#portal" x="1" y="4" class="portal"/>
+		<text x="9" y="5" class="loc-num">62</text>
+	</g>
+	<g transform="translate(485,229)" id="loc63">
+		<use href="#img63"/>
+		<use href="#lost" x="9" y="2.5" class="lost"/>
+		<use href="#portal" x="1" y="9" class="portal"/>
+		<text id="text12" x="10" y="-5" class="lostText">昆蒙</text>
+		<text x="10" y="9" class="loc-num">63</text>
+	</g>
+	<g transform="translate(473,271)" id="loc64">
+		<use href="#img64"/>
+		<use href="#guard" x="9" y="14" class="guard"/>
+		<use href="#portal" x="1" y="7" class="portal"/>
+		<text x="10" y="7" class="loc-num">64</text>
+	</g>
+</g>
+<g transform="translate(-164,160)" id="area11">
+	<g transform="translate(394,303)" id="loc65">
+		<use href="#img65"/>
+		<use href="#tree" x="35" y="-1" class="tree"/>
+		<use href="#portal" x="30" y="50" class="portal"/>
+		<use href="#portal" x="2" y="35" class="portal"/>
+		<use href="#portal" x="33" y="3" class="portal"/>
+		<text id="text1" x="51" y="51" class="portalText">29</text>
+		<text x="15" y="37" class="loc-num">65</text>
+	</g>
+	<g transform="translate(364,368)" id="loc66">
+		<use href="#img66"/>
+		<use href="#portal" x="13" y="5" class="portal"/>
+		<text x="5" y="9" class="loc-num">66</text>
+	</g>
+	<g transform="translate(394,387)" id="loc67">
+		<use href="#img67"/>
+		<use href="#lost" x="8" y="1.5" class="lost"/>
+		<use href="#portal" x="6" y="14" class="portal"/>
+		<text id="text13" x="9" y="-6" class="lostText">絨絨</text>
+		<text x="2" y="4" class="loc-num">67</text>
+	</g>
+	<g transform="translate(425,366)" id="loc68">
+		<use href="#img68"/>
+		<use href="#guard" x="11" y="3.5" class="guard"/>
+		<use href="#portal" x="1" y="11" class="portal"/>
+		<text x="10" y="14" class="loc-num">68</text>
+	</g>
+</g>
+<g transform="translate(-194,133)" id="area12">
+	<g transform="translate(332,327)" id="loc69">
+		<use href="#img69"/>
+		<use href="#portal" x="1" y="12" class="portal"/>
+		<text x="9" y="7" class="loc-num">69</text>
+	</g>
+	<g transform="translate(264,324)" id="loc70">
+		<use href="#img70"/>
+		<use href="#portal" x="1" y="4" class="portal"/>
+		<text x="10" y="7" class="loc-num">70</text>
+	</g>
+	<g transform="translate(261,347)" id="loc71">
+		<use href="#img71"/>
+		<use href="#portal" x="0" y="4" class="portal"/>
+		<text x="8" y="5" class="loc-num">71</text>
+	</g>
+	<g transform="translate(221,332)" id="loc72">
+		<use href="#img72"/>
+		<use href="#portal" x="8" y="15" class="portal"/>
+		<text x="6" y="7" class="loc-num">72</text>
+	</g>
+	<g transform="translate(202,367)" id="loc73">
+		<use href="#img73"/>
+		<use href="#portal" x="28" y="3" class="portal"/>
+		<use href="#portal" x="2" y="35" class="portal"/>
+		<text x="16" y="36" class="loc-num">73</text>
+	</g>
+	<g transform="translate(229,426)" id="loc74">
+		<use href="#img74"/>
+		<use href="#lost" x="1" y="5.5" class="lost"/>
+		<use href="#portal" x="7" y="16" class="portal"/>
+		<text id="text14" x="-11" y="9" class="lostText">夢特</text>
+		<text x="9" y="6" class="loc-num">74</text>
+	</g>
+	<g transform="translate(256,407)" id="loc75">
+		<use href="#img75"/>
+		<use href="#tree" x="17" y="-3" class="tree"/>
+		<use href="#lost" x="2" y="6" class="lost"/>
+		<use href="#portal" x="1" y="16" class="portal"/>
+		<use href="#portal" x="19" y="2" class="portal"/>
+		<text id="text15" x="-6" y="0" class="lostText">馬伊比德</text>
+		<text x="7" y="13" class="loc-num">75</text>
+	</g>
+	<g transform="translate(278,373)" id="loc76">
+		<use href="#img76"/>
+		<use href="#tree" x="37" y="8" class="tree"/>
+		<use href="#portal" x="32" y="7" class="portal"/>
+		<use href="#portal" x="12" y="38" class="portal"/>
+		<text x="19" y="18" class="loc-num">76</text>
+	</g>
+	<g transform="translate(321,436)" id="loc77">
+		<use href="#img77"/>
+		<use href="#portal" x="4" y="8" class="portal"/>
+		<text x="5" y="1" class="loc-num">77</text>
+	</g>
+	<g transform="translate(338,394)" id="loc78">
+		<use href="#img78"/>
+		<use href="#guard" x="18" y="10.5" class="guard"/>
+		<use href="#portal" x="31" y="31" class="portal"/>
+		<text x="19" y="20" class="loc-num">78</text>
+	</g>
+</g>
+<path d="M 256,8 L 329,8 329,42" class="lineTwoWay"/>
+<path d="M 313,41.73L 313,86.73" class="lineTwoWay"/>
+<path d="M 329.73,88.74L 355.27,103.72" class="lineTwoWay"/>
+<path d="M 105.97,70.09L 167.03,81.37" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 189.19,81.12L 209.81,53.08" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 187.64,61.87L 217.36,82.59" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 219.35,81.76L 226.65,40.7" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 46.69,19.66L 60.31,11.07" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 63.75,10.97L 90.25,25.76" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 93.03,28.44L 102.97,45.02" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 103.35,48.62L 92.65,79.84" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 90.78,80.15L 46.22,22.31" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 167.6,80.31L 151.4,63.89" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 170.92,34.73L 169.08,79.73" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 225.01,38.52L 172.99,32.94" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 350.54,91.8L 354.46,77.66" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 356.82,74.91L 384.18,62.55" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 386.14,63.72L 387.86,87.73" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 386.2,90.59L 358.8,103.86" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 386.5,13 l 20,0 0,102 -310,0 L 77.85,137.25" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 74.11,137.35L 42.89,126.65" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 39.49,127.32L 18.51,145.68" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 18.31,148.51L 40.69,174.49" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 43.33,174.51L 74.67,139.49" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 88.89,144.35L 129.11,130.65" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 130.55,131.95L 125.45,154.05" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 125.07,158L 125.93,183" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 127.94,184.5L 170.06,173.5" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 193.87,142.3L 222.13,131.7" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 223.67,132.97L 220.33,153.03" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 220.39,156.96L 225.61,183.04" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 244.93,184.49L 283.07,174.51" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 292.25,129.56L 326.75,172.44" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 350.22,145.58L 371.78,173.42" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 375,175L 401,175" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 402.09,173.22L 383.91,137.78" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 381.01,135.83L 292.99,128.17" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 401,135 l 14,0 0,70 -350,0 L 29.94,227.51" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 26.98,229.72L 16.02,248.28" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 15,252L 15,273" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 16.22,276.58L 30.78,295.42" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 32.85,295.19L 48.15,262.81" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 64.27,249L 29.73,229" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 51,261 L 130,261 130,248" class="lineTwoWay"/>
+<path d="M 118,234.95L 158,234.05" class="lineTwoWay"/>
+<path d="M 174.72,247.01L 188.28,254.99" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 191.47,254.64L 216.53,231.36" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 219.9,230.62L 256.1,242.38" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 259.92,243.55L 284.08,250.45" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 285.43,252.92L 280.57,269.08" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 251.01,299.21L 226.99,301.79" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 224.66,300.03L 219.34,268.97" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 218.95,265L 218.05,232" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 281.98,271.3L 338.02,279.7" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 341.98,280.29L 365.02,283.71" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 368.54,282.73L 388.46,266.27" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 390.05,267L 390.95,307" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 389,309.03L 318,309.97" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 314.86,311.64L 274.14,370.36" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 291,359.86L 344,356.14" class="lineTwoWay"/>
+<path d="M 354.99,356.85L 378.01,355.15" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 379.87,357L 378.13,383" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 377.61,386.96L 373.39,408.04" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 371.26,409.02L 333.74,387.98" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 393,215.71 l 22,0 0,115 -397,0 L 18,354" class="lineTwoWay"/>
+<path d="M 47.42,365.91L 34.58,408.09" class="lineTwoWay"/>
+<path d="M 63.52,402.3L 100.48,433.7" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 101.48,433.07L 92.52,399.93" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 93.9,397.39L 121.1,388.61" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 122.18,389.83L 102.82,433.17" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 129.35,342.48L 156.65,372.52" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 174.49,361.67L 199.51,339.33" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 201.71,339.87L 214.29,373.13" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 214.43,376.92L 203.57,413.08" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 202.09,413.22L 178.91,367.78" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 158,376 l 0,70 120,0 0,50 L 261,511" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 231.05,499.76L 213.95,531.24" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 214.27,534.55L 234.73,559.45" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 237.47,559.64L 260.53,538.36" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 260.78,535.41L 233.22,499.59" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 261,466.1L 141,471.9" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 137.04,471.58L 89.96,461.42" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 70.66,462.97L 67.34,482.03" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 65.02,483.75L 36.98,480.25" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 35.09,482L 35.91,501" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 11.21,536.6L 39.79,574.4" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 42.48,574.65L 61.52,557.35" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 62.09,554.22L 36.91,504.78" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 37.98,503.25L 114.02,512.75" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 116.98,511.26L 138.02,473.74" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 97.46,545.37L 129.54,575.63" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 132.84,576.21L 173.16,558.79" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 173.03,557.65L 97.97,544.35" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 224.01,185.24L 206.99,187.26" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 362,251L 351,251" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 271.89,370.34L 266.11,361.66" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 330,387L 319,387" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 262,513.12L 274,513.88" class="lineOneWay" marker-end="url(#arrow1)"/>
+</svg>
