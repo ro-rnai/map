@@ -9,9 +9,14 @@
 	.lostText{fill:#900;font-size:9px;font-family:"標楷體",cursive;text-anchor:middle;dominant-baseline:middle}
 	/*npc標籤文字*/
 	.npcText{fill:#049;font-size:9px;font-weight:bold;font-family:"標楷體",cursive;text-anchor:middle;dominant-baseline:middle}
+	/*跨島嶼標示*/
+	.anotherLandText{fill:#009933;font-size:9px;font-weight:bold;font-family:"Microsoft YaHei","微軟雅黑體",sans-serif;text-anchor:middle;dominant-baseline:middle;}
+	/*標示*/
+	.hintText{fill:#000;font-size:8px;font-family:"Microsoft YaHei","微軟雅黑體",sans-serif}
 /*物件*/
 	.portal{fill:#FF3366}
 	.point{fill:none;}
+	.anotherLand{fill:none;stroke:#009933;stroke-width:2.5px}
 	.npc{fill:#0099FF;stroke:#003366;stroke-width:0.5px} /*npc*/
 	.tree{fill:#00CC33;stroke:black;stroke-width:0.5px} /*庭園樹*/
 	.guard{fill:#FF0000;stroke:black;stroke-width:0.5px} /*守護者*/
@@ -104,6 +109,7 @@
 	<image id="img78" width="37" height="37" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlAQMAAAD/ULJAAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAJJJREFUCJlVzrENwjAUhOGzXFChDEDBIEh4lYxAT2FGYBQGSJEuZUYgXUpbogCUKMc9R4qEi6/4/WQ/wCXo7NNNBkoX+QA8OQM7cgGqxEaSulZhiyP7aTBpWglkuBczDirqvXWu8s9xNds8P4hlxsyIKhf1JQ7yLCuGd2s7bL/7okZfWpfPrza/6hngVPSspeuAHxZDeON5W66DAAAAAElFTkSuQmCC"/>
 	<circle id="portal" r="2"/>
 	<circle id="point" r="2"/>
+	<circle id="anotherLand" r="8"/>
 	<path id="tree" d="M 0,-4 L 1.47,-2.02 3.8,-1.24 2.38,0.77 2.35,3.24 0,2.5 -2.35,3.24 -2.38,0.77 -3.8,-1.24 -1.47,-2.02z"/>
 	<path id="guard" d="M 0,-4 L 3.464,2 -3.464,2 z"/>
 	<path id="lost" d="M -2,-2 L 2,2 M -2,2 L 2,-2 z"/>
@@ -547,6 +553,10 @@
 		<use href="#portal" x="33" y="3" class="portal"/>
 		<text id="text1" x="51" y="51" class="portalText">29</text>
 		<text x="15" y="37" class="loc-num">65</text>
+		<g transform="translate(42,35)">
+			<use href="#anotherLand" class="anotherLand"/>
+			<text x="0" y="1" class="anotherLandText">74</text>
+		</g>
 	</g>
 	<g transform="translate(364,368)" id="loc66">
 		<use href="#img66"/>
@@ -560,11 +570,15 @@
 		<text id="text13" x="9" y="-6" class="lostText">絨絨</text>
 		<text x="2" y="4" class="loc-num">67</text>
 	</g>
-	<g transform="translate(425,366)" id="loc68">
+	<g transform="translate(425,374)" id="loc68">
 		<use href="#img68"/>
 		<use href="#guard" x="11" y="3.5" class="guard"/>
 		<use href="#portal" x="1" y="11" class="portal"/>
 		<text x="10" y="14" class="loc-num">68</text>
+		<g transform="translate(25,-5)">
+			<use href="#anotherLand" class="anotherLand"/>
+			<text x="0" y="1" class="anotherLandText">75</text>
+		</g>
 	</g>
 </g>
 <g transform="translate(-194,133)" id="area12">
@@ -704,11 +718,11 @@
 <path d="M 201.71,339.87L 214.29,373.13" class="lineOneWay" marker-end="url(#arrow1)"/>
 <path d="M 214.43,376.92L 203.57,413.08" class="lineOneWay" marker-end="url(#arrow1)"/>
 <path d="M 202.09,413.22L 178.91,367.78" class="lineOneWay" marker-end="url(#arrow1)"/>
-<path d="M 158,376 l 0,70 120,0 0,50 L 261,511" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 158,376 l 0,70 120,0 0,56 L 261,511" class="lineOneWay" marker-end="url(#arrow1)"/>
 <path d="M 231.05,499.76L 213.95,531.24" class="lineOneWay" marker-end="url(#arrow1)"/>
 <path d="M 214.27,534.55L 234.73,559.45" class="lineOneWay" marker-end="url(#arrow1)"/>
-<path d="M 237.47,559.64L 260.53,538.36" class="lineOneWay" marker-end="url(#arrow1)"/>
-<path d="M 260.78,535.41L 233.22,499.59" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 237.47,559.64L 260.53,546.36" class="lineOneWay" marker-end="url(#arrow1)"/>
+<path d="M 260.78,543.41L 233.22,499.59" class="lineOneWay" marker-end="url(#arrow1)"/>
 <path d="M 261,466.1L 141,471.9" class="lineOneWay" marker-end="url(#arrow1)"/>
 <path d="M 137.04,471.58L 89.96,461.42" class="lineOneWay" marker-end="url(#arrow1)"/>
 <path d="M 70.66,462.97L 67.34,482.03" class="lineOneWay" marker-end="url(#arrow1)"/>
@@ -727,4 +741,23 @@
 <path d="M 271.89,370.34L 266.11,361.66" class="lineOneWay" marker-end="url(#arrow1)"/>
 <path d="M 330,387L 319,387" class="lineOneWay" marker-end="url(#arrow1)"/>
 <path d="M 262,513.12L 274,513.88" class="lineOneWay" marker-end="url(#arrow1)"/>
+<g transform="translate(320,495)">
+	<g>
+		<use x="4" y="-2" href="#tree" class="tree"/>
+		<use x="4" y="8" href="#guard" class="guard"/>
+		<path d="M 0,18l 10,0" class="lineOneWay" marker-end="url(#arrow1)"/>
+		<path d="M 0,28l 10,0" class="lineTwoWay"/>
+		<use x="4" y="36" href="#lost" class="lost"/>
+		<text y="50" class="hintText" style="fill:yellow">黃色區域</text>
+		<g transform="translate(40,0)">
+			<text y="0" class="hintText">庭園樹</text>
+			<text y="10" class="hintText">區域守衛</text>
+			<text y="20" class="hintText">單向通行</text>
+			<text y="30" class="hintText">雙向通行</text>
+			<text y="40" class="hintText">失蹤者</text>
+			<text y="50" class="hintText">殭屍龍出沒</text>
+		</g>
+	</g>
+</g>
+
 </svg>
